@@ -440,14 +440,14 @@ def scoreSimilarity(estScore, gtScore):
             return noteObj.tie.type if noteObj.tie is not None else ''
 
         def referClef(noteObj): # added
-            return noteObj.getContextByClass('Clef').name if noteObj.getContextByClass('Clef') is not None else ''
+            return noteObj.getContextByClass('Clef', getElementMethod=ElementSearch.ALL).name if noteObj.getContextByClass('Clef', getElementMethod=ElementSearch.ALL) is not None else ''
 
         def referTimeSig(noteObj): # added
-            return noteObj.getContextByClass('TimeSignature').numerator / noteObj.getContextByClass('TimeSignature').denominator \
-                    if noteObj.getContextByClass('TimeSignature') is not None else ''
+            return noteObj.getContextByClass('TimeSignature', getElementMethod=ElementSearch.ALL).numerator / noteObj.getContextByClass('TimeSignature', getElementMethod=ElementSearch.ALL).denominator \
+                    if noteObj.getContextByClass('TimeSignature', getElementMethod=ElementSearch.ALL) is not None else ''
 
         def referKeySig(noteObj): # added
-            keyObj = (noteObj.getContextByClass('Key') or noteObj.getContextByClass('KeySignature'))
+            keyObj = (noteObj.getContextByClass('Key', getElementMethod=ElementSearch.ALL) or noteObj.getContextByClass('KeySignature', getElementMethod=ElementSearch.ALL))
             return keyObj.sharps if keyObj else 0
 
         def referVoice(noteObj): # added
